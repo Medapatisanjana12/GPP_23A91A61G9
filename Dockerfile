@@ -51,11 +51,9 @@ COPY . .
 # ---------------------------------------------------------
 # Setup cron job
 # ---------------------------------------------------------
-# Expecting a file named cronjob inside your project
-# If missing, we will create it in next step
-RUN touch /etc/cron.d/app-cron && \
-    chmod 0644 /etc/cron.d/app-cron && \
-    crontab /etc/cron.d/app-cron
+COPY cron/2fa-cron /etc/cron.d/2fa-cron
+RUN chmod 0644 /etc/cron.d/2fa-cron && \
+    crontab /etc/cron.d/2fa-cron
 
 # ---------------------------------------------------------
 # Create volume mount points
